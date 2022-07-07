@@ -34,4 +34,12 @@ public class Specie implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
+
+    @Override
+    public String toString() {
+        return "Specie{" +
+                "code=" + code +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

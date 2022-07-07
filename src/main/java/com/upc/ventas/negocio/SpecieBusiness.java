@@ -1,5 +1,4 @@
 package com.upc.ventas.negocio;
-
 import com.upc.ventas.entidades.Specie;
 import com.upc.ventas.repositorios.SpecieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,10 +7,10 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class TropicalInvertebratesBusiness {
-    @Autowired
-    SpecieRepository specieRepository;
+public class SpecieBusiness {
+    @Autowired SpecieRepository specieRepository;
 
+    //Specie class functions
     public Specie createSpecie(Specie specie){
         return specieRepository.save(specie);
     }
@@ -22,13 +21,12 @@ public class TropicalInvertebratesBusiness {
         return specieRepository.findById(code).get();
     }
     public Specie getSpecie_by_name(String name){
-        List<Specie> specie = specieRepository.findAll();
-        Specie newSpecie = null;
-        for (Specie s:specie ) {
-            if (s.getName()==name){
-                newSpecie = specieRepository.findById(s.getCode()).get();
-            }
+        List<Specie> species = specieRepository.findAll();
+        for (Specie s:species ) {
+            if (s.getName().equals(name))
+                return specieRepository.findById(s.getCode()).get();
         }
-        return newSpecie;
+        return null;
     }
+
 }
